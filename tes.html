@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เฉลย GSB Wisdom</title>
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .phone-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            height: 90vh;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid #ddd;
+        }
+        .header {
+            background: linear-gradient(90deg, #eb008b, #8f005d);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .question-card {
+            display: none; /* ซ่อนไว้ก่อน */
+            animation: fadeIn 0.3s;
+        }
+        .question-card.active {
+            display: block; /* แสดงเฉพาะข้อที่เลือก */
+        }
+        .question-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            line-height: 1.4;
+        }
+        .choice {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            color: #555;
+            position: relative;
+        }
+        .choice.correct {
+            background-color: #e6fffa;
+            border: 2px solid #20c997;
+            color: #0ca678;
+            font-weight: bold;
+        }
+        .choice.correct::after {
+            content: '✓ ถูกต้อง';
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 0.8em;
+            background: #20c997;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .choice.wrong-highlight {
+            background-color: #fff5f5;
+            border: 1px solid #ff8787;
+            color: #e03131;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        .footer {
+            padding: 15px;
+            background-color: #fff;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Sarabun', sans-serif;
+            transition: 0.2s;
+        }
+        .btn-next {
+            background-color: #eb008b;
+            color: white;
+            width: 100%;
+        }
+        .btn-back {
+            background-color: #e9ecef;
+            color: #333;
+            margin-right: 10px;
+        }
+        .progress {
+            text-align: center;
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .explanation {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #eb008b;
+            background: #fff0f6;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="phone-container">
+        <div class="header">GSB Tutor (เฉลยข้อสอบ)</div>
+        
+        <div class="content">
+            <div class="progress">ข้อที่ <span id="current-q">1</span> / <span id="total-q">12</span></div>
+
+            <div class="question-card active" data-index="1">
+                <div class="question-text">การตรวจสอบรายชื่อบุคคลที่ถูกกำหนด (Sanction List) ควรทำเมื่อใด?</div>
+                <div class="choice wrong-highlight">เมื่อลูกค้ามีความประสงค์จะให้ตรวจสอบ</div>
+                <div class="choice correct">ก่อนสร้างความสัมพันธ์หรือรับทำธุรกรรมกับลูกค้า</div>
+                <div class="choice">หลังจากเปิดบัญชีให้ลูกค้าแล้ว</div>
+                <div class="choice">เมื่อสงสัยว่าลูกค้ามีพฤติการณ์</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> ต้องตรวจรายชื่อ "ก่อน" รับลูกค้าเสมอ เพื่อป้องกันความเสี่ยง</div>
+            </div>
+
+            <div class="question-card" data-index="2">
+                <div class="question-text">ข้อใด <u>ไม่ถูกต้อง</u> ในการทบทวนข้อมูลลูกค้า (CDD)</div>
+                <div class="choice correct">กรณีลูกค้าเดิมเคยเปิดบัญชีเมื่อ 6 เดือนที่ผ่านมา... สาขาไม่ต้องทบทวนข้อมูลลูกค้า</div>
+                <div class="choice">กรณีลูกค้าแจ้งข้อมูลเปลี่ยนแปลง... ต้องทบทวน</div>
+                <div class="choice">กรณีลูกค้าความเสี่ยงสูง (ระดับ 3)... ทบทวนปีละ 1 ครั้ง</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> แม้เพิ่งปิดบัญชีไป แต่ถ้ากลับมาเปิดใหม่ = ต้องทบทวนใหม่เสมอ (ข้อนี้ผิดตรงคำว่า "ไม่ต้องทบทวน")</div>
+            </div>
+
+            <div class="question-card" data-index="3">
+                <div class="question-text">ข้อใดเป็นวิธีการระบุผู้ได้รับผลประโยชน์ที่แท้จริง (UBO) ที่ <u>ไม่ถูกต้อง</u></div>
+                <div class="choice wrong-highlight">ทุกข้อที่กล่าวมาเป็นวิธีการที่ถูกต้อง</div>
+                <div class="choice correct">ผู้ได้รับผลประโยชน์ที่แท้จริง... อาจเป็นนิติบุคคลหรือบุคคลธรรมดาก็ได้</div>
+                <div class="choice">พิจารณาข้อมูลผู้ถือหุ้นตั้งแต่ร้อยละ 25 ขึ้นไป</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> UBO ต้องเป็น "คน" (บุคคลธรรมดา) เท่านั้น เป็นบริษัทไม่ได้</div>
+            </div>
+
+            <div class="question-card" data-index="4">
+                <div class="question-text">ผู้ใด <u>ไม่ใช่</u> ผู้มีสถานภาพทางการเมือง (PEP)</div>
+                <div class="choice wrong-highlight">ภริยาท่านรัฐมนตรี</div>
+                <div class="choice correct">ตำรวจยศร้อยตำรวจเอก</div>
+                <div class="choice">นายกองค์การบริหารส่วนตำบล</div>
+                <div class="choice">นายกรัฐมนตรี</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> ร้อยตำรวจเอก ยศยังไม่สูงพอที่จะเป็น PEP (แต่เมียรัฐมนตรี เป็น PEP เพราะเป็นญาติสนิท)</div>
+            </div>
+
+            <div class="question-card" data-index="5">
+                <div class="question-text">ใครเป็นผู้ที่มีหน้าที่อนุมัติการเปิดบัญชีสำหรับลูกค้าที่มีความเสี่ยงสูง</div>
+                <div class="choice wrong-highlight">พนักงานบริการลูกค้าระดับ 6 ขึ้นไป</div>
+                <div class="choice correct">ผู้จัดการสาขา หรือผู้ปฏิบัติงานแทน</div>
+                <div class="choice">ผู้ช่วยผู้จัดการสาขา</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> ลูกค้า High Risk ต้องให้ "ผู้จัดการสาขา" อนุมัติเท่านั้น</div>
+            </div>
+
+             <div class="question-card" data-index="6">
+                <div class="question-text">ข้อใดเป็นการให้บริการแบบพบเห็นลูกค้าต่อหน้า (Face to Face)</div>
+                <div class="choice wrong-highlight">นาย A ซื้อขายสลากดิจิทัลผ่าน MyMo</div>
+                <div class="choice">นางสาวดีสั่งซื้อหน่วยลงทุนผ่าน MyMo</div>
+                <div class="choice correct">นายหนึ่งนัดรับฝาก/ถอนเงิน... โดยใช้เครื่อง SUMO</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> ใช้แอป/ATM = ไม่เจอหน้า (Non-Face to Face) แต่พนักงานถือเครื่อง SUMO ไปหา = เจอหน้า</div>
+            </div>
+
+            <div class="question-card" data-index="7">
+                <div class="question-text">หลักการบริหารความเสี่ยงของลูกค้าที่ถูกต้องที่สุดคือข้อใด</div>
+                <div class="choice wrong-highlight">ทำเมื่อมีการรายงานธุรกรรม</div>
+                <div class="choice correct">การบริหารความเสี่ยงอย่างต่อเนื่อง (Ongoing) ปรับปรุงข้อมูลให้เป็นปัจจุบัน</div>
+                <div class="choice">ทำเมื่อเปิดบัญชีใหม่เท่านั้น</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> ต้องทำ "ต่อเนื่อง" (Ongoing) ตลอดเวลา</div>
+            </div>
+
+            <div class="question-card" data-index="8">
+                <div class="question-text">ข้อใด <u>ไม่ใช่</u> ผลิตภัณฑ์ที่มีความเสี่ยงต่ำ</div>
+                <div class="choice wrong-highlight">ผลิตภัณฑ์สำหรับผู้ยากไร้</div>
+                <div class="choice correct">ผลิตภัณฑ์หรือบริการที่มีการทำธุรกรรมแบบไม่เปิดเผยชื่อ</div>
+                <div class="choice">ประกันวินาศภัย</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> ผลิตภัณฑ์ที่ไม่รู้ชื่อคนทำ (Anonymous) = ความเสี่ยงสูง</div>
+            </div>
+
+            <div class="question-card" data-index="9">
+                <div class="question-text">ธนาคารต้องระงับการดำเนินการกับทรัพย์สินของบุคคลใดบ้าง</div>
+                <div class="choice wrong-highlight">บุคคลที่ถูกกำหนด (เฉยๆ)</div>
+                <div class="choice correct">บุคคลที่ถูกกำหนด, ผู้กระทำการแทน, ผู้ทำตามคำสั่ง... (ข้อที่ยาวที่สุด)</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> ต้องอายัดทั้งเครือข่าย (ตัวการ + ตัวแทน + ลูกน้อง)</div>
+            </div>
+
+            <div class="question-card" data-index="10">
+                <div class="question-text">ลูกค้าสามารถยื่นคำร้องต่อศาลใด เพื่อขอเพิกถอนรายชื่อ (Delisting)</div>
+                <div class="choice wrong-highlight">ศาลอาญา</div>
+                <div class="choice correct">ศาลแพ่ง</div>
+                <div class="choice">ศาลอุทธรณ์</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> เรื่องเพิกถอนชื่อ ให้ไปที่ "ศาลแพ่ง"</div>
+            </div>
+
+            <div class="question-card" data-index="11">
+                <div class="question-text">โอนเงิน 1.2 ล้านบาท (อิเล็กทรอนิกส์) ต้องรายงานแบบใด</div>
+                <div class="choice wrong-highlight">แบบ ปปง. 1-02</div>
+                <div class="choice correct">แบบ ปปง. 1-05-9</div>
+                <div class="choice">แบบ ปปง. 1-01</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> โอนเงิน = 1-05-9 (ส่วน 1-02 ใช้กับที่ดิน)</div>
+            </div>
+
+            <div class="question-card" data-index="12">
+                <div class="question-text">เอกสารใด <u>ไม่สามารถ</u> ใช้เปิดบัญชีชาวต่างชาติได้</div>
+                <div class="choice wrong-highlight">Passport Non-L-A</div>
+                <div class="choice correct">หนังสือเดินทาง (Passport) ที่มีวีซ่านักท่องเที่ยว (Tourist Visa)</div>
+                <div class="choice">บัตรประจำตัวคนซึ่งไม่มีสัญชาติไทย</div>
+                <div class="explanation">💡 <b>จำไว้ว่า:</b> วีซ่าท่องเที่ยว (Tourist) ใช้เปิดบัญชีทั่วไปไม่ได้ (หรือยากที่สุด)</div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <button class="btn btn-back" onclick="prevQ()">❮ ย้อนกลับ</button>
+            <button class="btn btn-next" onclick="nextQ()">ถัดไป (ข้อต่อไป) ❯</button>
+        </div>
+    </div>
+
+    <script>
+        let current = 1;
+        const total = 12;
+
+        function showQ(index) {
+            // Hide all
+            document.querySelectorAll('.question-card').forEach(el => el.classList.remove('active'));
+            // Show current
+            document.querySelector(`.question-card[data-index="${index}"]`).classList.add('active');
+            // Update Text
+            document.getElementById('current-q').innerText = index;
+            
+            // Manage Buttons
+            if(index === 1) {
+                document.querySelector('.btn-back').style.display = 'none';
+            } else {
+                document.querySelector('.btn-back').style.display = 'block';
+            }
+
+            if(index === total) {
+                document.querySelector('.btn-next').innerText = 'จบการนำเสนอ';
+            } else {
+                document.querySelector('.btn-next').innerText = 'ถัดไป (ข้อต่อไป) ❯';
+            }
+        }
+
+        function nextQ() {
+            if (current < total) {
+                current++;
+                showQ(current);
+            } else {
+                alert('จบแล้วครับ! ขอให้สอบผ่านนะครับ');
+            }
+        }
+
+        function prevQ() {
+            if (current > 1) {
+                current--;
+                showQ(current);
+            }
+        }
+
+        // Init
+        showQ(1);
+    </script>
+
+</body>
+</html>
